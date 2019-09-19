@@ -6,19 +6,23 @@ import { ICard } from '../interfaces/card.interface';
 export class Board {
 	private size: number;
 	private time: number;
+	private _score: number;
+	private _gameOver: boolean;
 	private cards: Array<ICard>;
 	private cardsNum: number = 10;
 	private _deck: IDeck;
+	private _activeCard: number;
 
 	constructor (size: number, time: number, cards: Array<ICard>) {
 		this.size = size;
 		this.time = time;
 		this.cards = cards;
+		this.score = 0;
 
 		this.createDeck();
 	}
 
-	createDeck () {
+	createDeck (): void {
 		let deck: IDeck = {
 			cards: []
 		};
@@ -34,7 +38,56 @@ export class Board {
 		}
 
 		this.deck = deck;
-		console.log(this.deck);
+	}
+
+	flipCard (cardID: number, cardIndex: number): boolean {
+		let selectedCard: ICard = this.deck.cards[cardIndex];
+
+		if ((this.activeCard == null || this.activeCard == undefined) && selectedCard.inGame == true) {
+			// pick first card
+			this.activeCard = cardID;
+
+			selectedCard.show == true;
+
+			return true;
+		} else if (selectedCard.inGame == true) {
+			// pick second card
+			this._deck.cards.forEach((card, index) => {
+				if (card.id == selectedCard.id) {
+					card.show == true;
+				}
+			});
+
+			/* Check if selected cards match */
+			if (selectedCard.id == this.activeCard) 
+			{
+				/* Cards match */
+				this._deck.cards.forEach((card, index) => {
+					if (card.id == selectedCard.id) {
+						card.inGame == false;
+					}
+				});
+
+				this.score = (this.score++);
+				return true;
+			} 
+			else 
+			{
+				/* Cards dont match */
+				this._deck.cards.forEach((card, index) => {
+					if (card.id == selectedCard.id) {
+						card.show == false;
+					}
+				});
+
+				return false;
+			}
+		} 
+		else 
+		{
+			// picked non-ingame card
+			return false;
+		}
 	}
 
 	get deck (): IDeck {
@@ -43,5 +96,29 @@ export class Board {
 
 	set deck (deck: IDeck) {
 		this._deck = deck;
+	}
+
+	get score (): number {
+		return this._score;
+	}
+
+	set score (score: number) {
+		this._score = score;
+	}
+
+	get gameOver (): boolean {
+		return this._gameOver;
+	}
+
+	set gameOver (state: boolean) {
+		this._gameOver = state;
+	}
+
+	get activeCard (): number {
+		return this._activeCard;
+	}
+
+	set activeCard (cardID: number) {
+		this._activeCard = cardID;
 	}
 }
