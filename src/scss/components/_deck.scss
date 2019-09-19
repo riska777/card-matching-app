@@ -1,0 +1,26 @@
+.c-deck {
+    &__card {
+        &__inner {
+            background: $color-blue;
+            width: 100%;
+            height: 7rem;
+            margin: 0 0 30px;
+            display: flex;
+            border-radius: 0.5rem;
+            box-shadow: rgba($color-black, .75) 0 0 5px;
+            align-items: center;
+            justify-content: center;
+            padding: .5rem;
+            font-size: 3rem;
+            font-family: $fontEmoji;
+            cursor: pointer;
+            user-select: none;
+
+            &--inactive {
+                > span {
+                    display: none;
+                }
+            }
+        }
+    }
+}

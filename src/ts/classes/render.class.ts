@@ -2,10 +2,12 @@ import { Board } from "./board.class";
 
 export class Render {
 	private board: Board;
-	public boardSelector: string = "board";
+	public boardSelector: string = "c-deck";
 	public scoreSelector: string = "score";
 	public timeSelector: string = "time";
-	public cardSelector: string = "card";
+	public cardSelector: string = "c-deck__card";
+	public moveInProgress: boolean = false;
+	private moveInProgressTimeout: any;
 	private renderInterval: number = (1000 / 60);
 	private renderIntervalObj: any;
 
@@ -26,11 +28,18 @@ export class Render {
 
 		this.board.deck.cards.forEach((card, index) => {
 			let cardEl: Element = document.createElement('div');
-			cardEl.setAttribute('class', `${this.cardSelector}`);
-			cardEl.setAttribute('data-id', `${card.id}`);
-			cardEl.setAttribute('data-index', `${index}`);
-			cardEl.textContent = `${card.face}`;
+			cardEl.setAttribute('class', `${this.cardSelector} col-6 col-sm-4 col-md-3`);
 
+			let cardElInner: Element = document.createElement('div');
+			cardElInner.setAttribute('class', `${this.cardSelector}__inner ${this.cardSelector}__inner--inactive`);
+			cardElInner.setAttribute('data-id', `${card.id}`);
+			cardElInner.setAttribute('data-index', `${index}`);
+
+			let cardElBack: Element = document.createElement('span');
+			cardElBack.textContent = `${card.face}`;
+
+			cardElInner.appendChild(cardElBack);
+			cardEl.appendChild(cardElInner);
 			boardEl.appendChild(cardEl);
 		});
 	}
@@ -45,9 +54,7 @@ export class Render {
 
 	setCardEvents (): void {
 		let boardEl: Element = document.querySelector(`.${this.boardSelector}`);
-		let cards: NodeListOf<Element> = boardEl.querySelectorAll(`.${this.cardSelector}`);
-
-		console.log(cards);
+		let cards: NodeListOf<Element> = boardEl.querySelectorAll(`.${this.cardSelector}__inner`);
 
 		cards.forEach(card => {
 			card.addEventListener('click', this.clickEvent);
@@ -55,11 +62,58 @@ export class Render {
 	}
 
 	private clickEvent = (event: Event): void => {
-		let cardEl: Element = event.target as Element;
+		console.log(event);
+
+		if (this.moveInProgress) {
+			return;
+		}
+
+		let cardEl: Element = event.srcElement as Element;
 		let cardID: number = parseInt(cardEl.getAttribute('data-id'));
 		let cardIndex: number = parseInt(cardEl.getAttribute('data-index'));
 
-		console.log(this.board.flipCard(cardID, cardIndex));
+		cardEl.classList.remove(`${this.cardSelector}__inner--inactive`);
+
+		let firstFlip: boolean = false;
+
+		if (this.board.activeCard == null || this.board.activeCard == undefined) {
+			/* First flip */
+			firstFlip = true;
+		} else {
+			/* Second flip */
+			firstFlip = false;
+		}
+
+		let isMatch = this.board.flipCard(cardID, cardIndex);
+		let cards = document.querySelectorAll(`.${this.cardSelector}__inner[data-id="${cardID}"]`);
+		let cardsAll = document.querySelectorAll(`.${this.cardSelector}__inner`);
+
+		if (isMatch) {
+			/* Remove click events from matched cards */
+			cards.forEach((card) => {
+				card.classList.add(`${this.cardSelector}__inner--disabled`);
+				card.removeEventListener('click', this.clickEvent);
+			});
+		} else {
+			if (firstFlip) {
+
+			} else {
+				/* Set back the inactive card state */
+				this.moveInProgress = true;
+
+				this.moveInProgressTimeout = setTimeout(() => {
+					cardsAll.forEach((card) => {
+						if (!card.classList.contains(`${this.cardSelector}__inner--disabled`)) {
+							card.classList.add(`${this.cardSelector}__inner--inactive`);
+						}
+
+						this.moveInProgress = false;
+					})
+				}, 1000);
+			}
+		}
+
+		console.log('match: ', isMatch);
 	}
 	
 }

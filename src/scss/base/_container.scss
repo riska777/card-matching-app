@@ -1,0 +1,11 @@
+@include media-breakpoint-up(lg) {
+    .container {
+        max-width: $containerMaxWidth;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .container {
+        max-width: $containerMaxWidth;
+    }
+}

@@ -1,11 +1,13 @@
 $rem: 16px;
 $body: #fff;
 $bodyMinWidth: 320px;
+$containerMaxWidth: 700px;
 $fontRoboto: 'Roboto', sans-serif;
+$fontEmoji: 'Segoe UI Emoji';
 
-/* Color */
 $color-black: #000;
 $color-white: #fff;
+$color-blue: #618db3;
 
 $fontSizes: (
     8,
@@ -26,5 +28,6 @@ $textColors: (
 
 $buttonColors: (
     "black": $color-black,
-    "white": $color-white
+    "white": $color-white,
+    "blue": $color-blue
 );

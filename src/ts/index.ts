@@ -5,6 +5,12 @@ import { Board } from './classes/board.class';
 import { Render } from './classes/render.class';
 
 const cards = data.default.cards;
+const time = 60;
+let size = 3;
 
-const board = new Board(3,60,cards);
-const render = new Render(board);
+
+
+function startGame (): void {
+	const board = new Board(size, time, cards);
+	const render = new Render(board);
+}

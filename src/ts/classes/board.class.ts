@@ -2,6 +2,7 @@ const _ = require('lodash');
 
 import { IDeck } from '../interfaces/deck.interface';
 import { ICard } from '../interfaces/card.interface';
+import { threadId } from 'worker_threads';
 
 export class Board {
 	private _size: number;
@@ -48,7 +49,7 @@ export class Board {
 			this.activeCard = cardID;
 			selectedCard.show == true;
 
-			return true;
+			return false;
 		} else if (selectedCard.inGame == true) {
 			// pick second card
 			this._deck.cards.forEach((card, index) => {
@@ -62,13 +63,10 @@ export class Board {
 			{
 				/* Cards match */
 				this._deck.cards.forEach((card, index) => {
-					console.log(card, card.id);
 					if (card.id == selectedCard.id) {
 						card.inGame = false;
 					}
 				});
-				console.log(selectedCard.id);
-				console.log(this._deck.cards);
 
 				this.score = this.score + 1;
 				this.activeCard = null;
@@ -92,6 +90,13 @@ export class Board {
 			// picked non-ingame card
 			return false;
 		}
+	}
+
+	reset () {
+		this.score = 0;
+		this.gameOver = false;
+		this._activeCard = null;
+		this.createDeck();
 	}
 
 	get deck (): IDeck {
