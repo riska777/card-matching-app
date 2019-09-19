@@ -2,7 +2,7 @@ const path = require('path');
 
 module.exports = {
 	entry: './src/ts/index.ts',
-	devtool: 'inline-source-map',
+	// devtool: 'inline-source-map',
 	devServer: {
 		clientLogLevel: 'silent',
 		// port: 9000,

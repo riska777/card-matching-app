@@ -1,5 +1,5 @@
-export interface Card {
-    id: number;
-    image: string;
-    face: boolean;
+export interface ICard {
+	id: number;
+	face: string;
+	show: boolean;
 }

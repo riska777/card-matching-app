@@ -12,6 +12,8 @@
   "author": "Andras Lukacs <stratox777@gmail.com>",
   "license": "ISC",
   "devDependencies": {
+    "@types/lodash": "^4.14.138",
+    "lodash": "^4.17.15",
     "ts-loader": "^6.1.0",
     "typescript": "^3.6.3",
     "webpack": "^4.40.2",
