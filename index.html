@@ -9,51 +9,54 @@
 </head>
 <body>
 	<div class="c-app">
-		<div class="container">
-			<div class="row">
-				<div class="col-12">
-					<h1>Card matching game</h1>
-
-					<p>
-						Select how many pairs of cards you would like to play with, then hit Start!
-						<br>
-						<br>
-						If you choose bad, you can only see the flipped cards for one second...
-						<br>
-						<p class="h-fs--24">Good luck!</p>
-					</p>
-				</div>
-				<div class="col-12">
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-							<label class="input-group-text" for="boardSize">Size</label>
-						</div>
-						<select class="custom-select" id="boardSize">
-							<option value="3" selected>Three pairs</option>
-							<option value="4">Four pairs</option>
-							<option value="5">Five pairs</option>
-							<option value="6">Six pairs</option>
-							<option value="7">Seven pairs</option>
-							<option value="8">Eight pairs</option>
-							<option value="9">Nine pairs</option>
-							<option value="10">Ten pairs</option>
-						</select>
+		<section class="start">
+			<div class="container">
+				<div class="row">
+					<div class="col-12">
+						<h1>Card matching game</h1>
+	
+						<p>
+							Select how many pairs of cards you would like to play with, then hit Start!
+							<br>
+							<br>
+							If you choose bad, you can only see the flipped cards for one second...
+							<br>
+							<p class="h-fs--24">Good luck!</p>
+						</p>
 					</div>
-				</div>
-				<div class="col-12 text-center mb-4">
-					<div type="button" class="btn btn-outline-success btn-lg">
-						Start
+					<div class="col-12">
+						<div class="input-group mb-3">
+							<div class="input-group-prepend">
+								<label class="input-group-text" for="boardSize">Size</label>
+							</div>
+							<select class="custom-select" id="boardSize">
+								<option value="3" selected>Three pairs</option>
+								<option value="4">Four pairs</option>
+								<option value="5">Five pairs</option>
+								<option value="6">Six pairs</option>
+								<option value="7">Seven pairs</option>
+								<option value="8">Eight pairs</option>
+								<option value="9">Nine pairs</option>
+								<option value="10">Ten pairs</option>
+							</select>
+						</div>
+					</div>
+					<div class="col-12 text-center mb-4">
+						<div type="button" class="btn btn-outline-success btn-lg start-btn">
+							Start
+						</div>
 					</div>
 				</div>
 			</div>
-		</div>
+		</section>
 
-		<div class="container">
+		<section class="game d-none">
+			<div class="container">
 				<div class="c-deck row"></div>
 				
 				<div class="row">
 					<div class="col-12">
-						<div class="score"></div>
+						<div class="score h-fs--24 font-weight-bold"></div>
 					</div>
 				</div>
 				
@@ -62,7 +65,8 @@
 						<div class="time"></div>
 					</div>
 				</div>
-		</div>
+			</div>
+		</section>
 	</div>
 
 	<script src="./dist/bundle.js"></script>

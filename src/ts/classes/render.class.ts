@@ -47,8 +47,7 @@ export class Render {
 	renderScore () {
 		this.renderIntervalObj = setInterval(() => {
 			let scoreEl: Element = document.querySelector(`.${this.scoreSelector}`);
-			scoreEl.textContent = `${this.board.score}`;
-
+			scoreEl.textContent = `Score: ${this.board.score}`;
 		}, this.renderInterval);
 	}
 
@@ -62,8 +61,6 @@ export class Render {
 	}
 
 	private clickEvent = (event: Event): void => {
-		console.log(event);
-
 		if (this.moveInProgress) {
 			return;
 		}
