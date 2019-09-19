@@ -2,7 +2,6 @@ const _ = require('lodash');
 
 import { IDeck } from '../interfaces/deck.interface';
 import { ICard } from '../interfaces/card.interface';
-import { threadId } from 'worker_threads';
 
 export class Board {
 	private _size: number;
