@@ -1,0 +1,5 @@
+@each $name, $color in $textColors {
+    .h-color--#{$name} {
+        color: $color;
+    }
+}

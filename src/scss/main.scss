@@ -1,0 +1,14 @@
+@import "./node_modules/bootstrap/scss/bootstrap";
+
+/* Import config files */
+@import "config/variables";
+/* Import base modules */
+@import "base/mixins";
+@import "base/body";
+@import "base/fonts";
+/* Import component files */
+
+/* Import helper files */
+@import "helpers/colors";
+@import "helpers/backgrounds";
+@import "helpers/font-sizes";

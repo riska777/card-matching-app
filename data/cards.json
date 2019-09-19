@@ -1,0 +1,14 @@
+{
+    "cards": [
+        { "id": "1", "face": "😀", "show": false, "inGame": true },
+        { "id": "2", "face": "😅", "show": false, "inGame": true },
+        { "id": "3", "face": "😍", "show": false, "inGame": true },
+        { "id": "4", "face": "🤠", "show": false, "inGame": true },
+        { "id": "5", "face": "😇", "show": false, "inGame": true },
+        { "id": "6", "face": "🍆", "show": false, "inGame": true },
+        { "id": "7", "face": "😘", "show": false, "inGame": true },
+        { "id": "8", "face": "😂", "show": false, "inGame": true },
+        { "id": "9", "face": "😎", "show": false, "inGame": true },
+        { "id": "10", "face": "🤑", "show": false, "inGame": true }
+    ]
+}

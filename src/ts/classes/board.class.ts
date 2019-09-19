@@ -4,7 +4,7 @@ import { IDeck } from '../interfaces/deck.interface';
 import { ICard } from '../interfaces/card.interface';
 
 export class Board {
-	private size: number;
+	private _size: number;
 	private time: number;
 	private _score: number;
 	private _gameOver: boolean;
@@ -46,7 +46,6 @@ export class Board {
 		if ((this.activeCard == null || this.activeCard == undefined) && selectedCard.inGame == true) {
 			// pick first card
 			this.activeCard = cardID;
-
 			selectedCard.show == true;
 
 			return true;
@@ -63,12 +62,16 @@ export class Board {
 			{
 				/* Cards match */
 				this._deck.cards.forEach((card, index) => {
+					console.log(card, card.id);
 					if (card.id == selectedCard.id) {
-						card.inGame == false;
+						card.inGame = false;
 					}
 				});
+				console.log(selectedCard.id);
+				console.log(this._deck.cards);
 
-				this.score = (this.score++);
+				this.score = this.score + 1;
+				this.activeCard = null;
 				return true;
 			} 
 			else 
@@ -80,6 +83,7 @@ export class Board {
 					}
 				});
 
+				this.activeCard = null;
 				return false;
 			}
 		} 
@@ -96,6 +100,14 @@ export class Board {
 
 	set deck (deck: IDeck) {
 		this._deck = deck;
+	}
+
+	get size (): number {
+		return this._size;
+	}
+
+	set size (size: number) {
+		this._size = size;
 	}
 
 	get score (): number {

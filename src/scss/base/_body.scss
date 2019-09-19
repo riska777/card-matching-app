@@ -1,0 +1,10 @@
+html {
+    font-size: $rem;
+}
+
+body {
+    background: $body;
+    @include font-smoothing();
+    min-width: $bodyMinWidth;
+    font-family: $fontRoboto;
+}

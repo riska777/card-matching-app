@@ -1,0 +1,7 @@
+@each $size in $fontSizes {
+    $remSize: $size / 16;
+
+    .h-fs--#{$size} {
+        font-size: $remSize + rem;
+    }
+}
