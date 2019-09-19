@@ -13,9 +13,6 @@ export class Render {
 
 	constructor (board: Board) {
 		this.board = board;
-		this.renderCards();
-		this.renderScore();
-		this.setCardEvents();
 
 		/* Test board instance */
 		/* console.log(this.board.size);
@@ -23,8 +20,15 @@ export class Render {
 		console.log(this.board.size); */
 	}
 
+	render (): void {
+		this.renderCards();
+		this.renderScore();
+		this.setCardEvents();
+	}
+
 	renderCards (): void {
 		let boardEl: Element = document.querySelector(`.${this.boardSelector}`);
+		boardEl.textContent = '';
 
 		this.board.deck.cards.forEach((card, index) => {
 			let cardEl: Element = document.createElement('div');
@@ -45,6 +49,7 @@ export class Render {
 	}
 
 	renderScore () {
+		clearInterval(this.renderIntervalObj);
 		this.renderIntervalObj = setInterval(() => {
 			let scoreEl: Element = document.querySelector(`.${this.scoreSelector}`);
 			scoreEl.textContent = `Score: ${this.board.score}`;
@@ -58,6 +63,12 @@ export class Render {
 		cards.forEach(card => {
 			card.addEventListener('click', this.clickEvent);
 		});
+	}
+
+	resetRender (): void {
+		this.renderCards();
+		this.renderScore();
+		this.setCardEvents();
 	}
 
 	private clickEvent = (event: Event): void => {

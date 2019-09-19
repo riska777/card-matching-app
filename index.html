@@ -9,12 +9,18 @@
 </head>
 <body>
 	<div class="c-app">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<h1>Card matching game</h1>
+				</div>
+			</div>
+		</div>
+		
 		<section class="start">
 			<div class="container">
 				<div class="row">
 					<div class="col-12">
-						<h1>Card matching game</h1>
-	
 						<p>
 							Select how many pairs of cards you would like to play with, then hit Start!
 							<br>
@@ -54,15 +60,23 @@
 			<div class="container">
 				<div class="c-deck row"></div>
 				
-				<div class="row">
-					<div class="col-12">
-						<div class="score h-fs--24 font-weight-bold"></div>
+				<div class="row mb-3">
+					<div class="col-12 col-sm-6">
+						<div class="score h-fs--24 font-weight-bold mb-3 mb-sm-0"></div>
+					</div>
+
+					<div class="col-12 col-sm-6 text-right">
+						<div type="button" class="btn btn-outline-info btn-lg d-block d-sm-inline-flex reset-btn">
+							Restart
+						</div>
 					</div>
 				</div>
-				
+
 				<div class="row">
 					<div class="col-12">
-						<div class="time"></div>
+						<div type="button" class="btn btn-outline-info btn-lg d-block d-sm-inline-flex settings-btn">
+							Settings
+						</div>
 					</div>
 				</div>
 			</div>

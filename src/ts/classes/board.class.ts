@@ -19,8 +19,6 @@ export class Board {
 		this.time = time;
 		this.cards = cards;
 		this.score = 0;
-
-		this.createDeck();
 	}
 
 	createDeck (): void {
@@ -92,7 +90,7 @@ export class Board {
 		}
 	}
 
-	reset () {
+	resetBoard (): void {
 		this.score = 0;
 		this.gameOver = false;
 		this._activeCard = null;
