@@ -102,7 +102,7 @@ export class Render {
 				card.classList.add(`${this.cardSelector}__inner--disabled`);
 				card.removeEventListener('click', this.clickEvent);
 			});
-		} else {
+		} else if (isMatch == false) {
 			if (firstFlip) {
 
 			} else {

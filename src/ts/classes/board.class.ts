@@ -12,6 +12,7 @@ export class Board {
 	private cardsNum: number = 10;
 	private _deck: IDeck;
 	private _activeCard: number;
+	private _activeCardIndex: number;
 
 	constructor (size: number, time: number, cards: Array<ICard>) {
 		this.size = size;
@@ -41,9 +42,14 @@ export class Board {
 	flipCard (cardID: number, cardIndex: number): boolean {
 		let selectedCard: ICard = this.deck.cards[cardIndex];
 
+		if ((this.activeCardIndex !== null || this.activeCardIndex !== undefined) && this.activeCardIndex == cardIndex) {
+			return;
+		}
+
 		if ((this.activeCard == null || this.activeCard == undefined) && selectedCard.inGame == true) {
 			// pick first card
 			this.activeCard = cardID;
+			this.activeCardIndex = cardIndex;
 			selectedCard.show == true;
 
 			return false;
@@ -67,6 +73,7 @@ export class Board {
 
 				this.score = this.score + 1;
 				this.activeCard = null;
+				this.activeCardIndex = null;
 				return true;
 			} 
 			else 
@@ -79,6 +86,7 @@ export class Board {
 				});
 
 				this.activeCard = null;
+				this.activeCardIndex = null;
 				return false;
 			}
 		} 
@@ -134,5 +142,13 @@ export class Board {
 
 	set activeCard (cardID: number) {
 		this._activeCard = cardID;
+	}
+
+	get activeCardIndex (): number {
+		return this._activeCardIndex;
+	}
+
+	set activeCardIndex (index: number) {
+		this._activeCardIndex = index;
 	}
 }
